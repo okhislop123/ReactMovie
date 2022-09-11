@@ -3,27 +3,33 @@ import scss from "./style.module.scss";
 import useRequest from "hooks/useRequest";
 import movieAPI from "apis/movieAPI";
 import { useNavigate } from "react-router-dom";
+import authSlice from "modules/Authentication/slices/authSlice";
 
 const MovieList = () => {
-console.log("movie run")
   const {
     data: movies,
     isLoading,
     error,
   } = useRequest(() => movieAPI.getMovies());
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleClick = ()=>{
-    navigate("/admin/movies/add")
-  }
+  const handleClick = () => {
+    navigate("/admin/movies/add");
+  };
 
-  const onSelectProduct = () =>{
-    navigate("/admin/movies/update")
-  }
+  const onSelectProduct = () => {
+    navigate("/admin/movies/update");
+  };
 
-  const handleClicka = () =>{
-    navigate("/admin/movies/time")
+  const handleClicka = () => {
+    navigate("/admin/movies/time");
+  };
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const handleLogout = () =>{
+    localStorage.removeItem("user");
+    navigate("/")
   }
   return (
     <div className={scss.center}>
@@ -36,9 +42,9 @@ console.log("movie run")
             <img src="/img/icon1.png" alt="" />
             <span>Phim</span>
           </li>
-          <li>
+          <li onClick={handleClicka}>
             <img src="/img/icon2.png" alt="" />
-            <span onClick={handleClicka}>Lịch chiếu</span>
+            <span>Lịch chiếu</span>
           </li>
         </ul>
       </div>
@@ -57,7 +63,8 @@ console.log("movie run")
               </a>
             </div>
             <div class={scss.user}>
-              <a href="#">Name</a>
+              <p><img src="/img/icon4.png" alt="" /> {user.taiKhoan}</p>
+              <a onClick={handleLogout}>Logout</a>
             </div>
           </div>
         </div>
@@ -84,9 +91,7 @@ console.log("movie run")
                     </td>
                     <td>{movie.moTa}</td>
                     <td>
-                      <button
-                      onClick={() =>onSelectProduct(movie.maPhim)}
-                      >
+                      <button onClick={() => onSelectProduct(movie.maPhim)}>
                         Update
                       </button>
                       <button

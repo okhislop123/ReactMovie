@@ -54,7 +54,6 @@ const Login = () => {
       // chờ cho action login thành công
       await dispatch(login(values)).unwrap();
       // Chuyển user về trang home
-      navigate("/");
       notification.success({
         message: "Đăng nhập thành công",
       });

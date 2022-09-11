@@ -59,6 +59,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 10;
     .nav {
       width: 90%;
       display: flex;
@@ -108,7 +109,7 @@
         }
       }
       .user {
-        flex: 0;
+        flex: 1 1;
         a {
           text-decoration: none;
         }
@@ -154,6 +155,60 @@
             background: #f1f1f1;
             color: #66cc99;
             border: 1px solid #66cc99;
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (max-width: 992px) {
+  .center{
+    .menu{
+      .names{
+        h1{
+          font-size: 35px;
+        }
+      }
+      ul{
+        li{
+          span{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (max-width: 768px) {
+  .center{
+    .menu{
+      .names{
+        h1{
+          font-size: 30px;
+        }
+      }
+      ul{
+        li{
+          span{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (max-width: 576px) {
+  .center{
+    .menu{
+      .names{
+        h1{
+          font-size: 25px;
+        }
+      }
+      ul{
+        li{
+          span{
+            display: none;
           }
         }
       }

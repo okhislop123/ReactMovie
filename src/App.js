@@ -39,22 +39,13 @@ function App() {
       }
     >
       <Routes>
-        <Route
-          path="admin"
-          element={<AdminRoute/>}
-          // element={
-            // TODO: chuyển vào component AdminLayout
-            // TODO: tạo AdminRoute kiểm tra xem user có phải là QuanTri hay không
-            // <>
-            
-          //   </>
-          // }
-        >
-                 <Route index path="/movies" element={<MovieList />}  />
-                {/*
-                <Route path="/movies/add" element={<AddMovie />} />
-                <Route path="/movies/update" element={<UpdateMovie />} />
-              <Route path="/movies/time" element={<Times />} /> */}
+        <Route path="/" element={<AdminRoute />}>
+          <Route path="admin/">
+            <Route index path="movies" element={<MovieList />} />
+            <Route path="movies/add" element={<AddMovie />} />
+            <Route path="movies/update" element={<UpdateMovie />} />
+            <Route path="movies/time" element={<Times />} />
+          </Route>
           {/* AdminUser, AdminShowtimes */}
         </Route>
 
