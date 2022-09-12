@@ -3,13 +3,14 @@ import useRequest from "hooks/useRequest";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import scss from "./styles.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // Data thêm phim: tenPhim, biDanh, moTa, trailer, hinhAnh, ngayKhoiChieu, maNhom
 
-const AddMovie = () => {
+const UpdateMovie = () => {
   const [imgPreview, setImgPreview] = useState("");
   const navigate = useNavigate()
+  const {movieId} = useParams()
 
   const {
     register,
@@ -18,6 +19,7 @@ const AddMovie = () => {
     setValue,
   } = useForm({
     defaultValues: {
+      maPhim:movieId,
       tenPhim: "",
       biDanh: "",
       moTa: "",
@@ -28,11 +30,15 @@ const AddMovie = () => {
     mode: "onTouched",
   });
 
-
+  const { data: handleUpdateMovie, isLoading } = useRequest(
+    (values,user) => movieAPI.UpdateMovie(values,user.accessToken),
+    { isManual: true }
+  );
 
   const onSubmit = async (values) => {
     try {
-      // await handleAddMovie(values);
+      const user = JSON.parse(localStorage.getItem("user"));
+      await handleUpdateMovie(values,user);
       console.log(values);
       // Thành công: gọi notification
       // Redirect về trang MovieList
@@ -159,4 +165,4 @@ const AddMovie = () => {
   );
 };
 
-export default AddMovie;
+export default UpdateMovie;

@@ -1,48 +1,37 @@
 import React from "react";
 import scss from "./style.module.scss";
 import useRequest from "hooks/useRequest";
-import movieAPI from "apis/movieAPI";
 import { useNavigate } from "react-router-dom";
+import userAPI from "apis/userAPI";
 
-const MovieList = () => {
-  const {
-    data: movies,
-    isLoading,
-    error,
-  } = useRequest(() => movieAPI.getMovies());
+const UserList = () => {
+  const { data: users } = useRequest(() => userAPI.getUser());
+  console.log(users);
 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/admin/movies/addmovie");
+    navigate("/register");
   };
-
-  const onSelectProduct = (movieId) => {
-    navigate(`/admin/movies/updatemovie/${movieId}`);
-  };
-
-  const handleClicka = () => {
-    navigate("/admin/movies/time");
-  };
-
-  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/");
   };
 
-  const handleDelete = (moveId, acces) => {
-    movieAPI.DeleteMovie(moveId, acces);
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleClicka = () => {
+    navigate("/admin/movies/time");
   };
 
-  const handleClickb = () =>{
-    navigate("/admin/movies/user")
-  }
+  const handleClickb = () => {
+    navigate("/admin/movies/user");
+  };
 
-  const handleClickc = () =>{
-    navigate("/admin/movies")
-  }
+  const handleClickc = () => {
+    navigate("/admin/movies");
+  };
   return (
     <div className={scss.center}>
       <div className={scss.menu}>
@@ -75,7 +64,7 @@ const MovieList = () => {
             </div>
             <div class={scss.add}>
               <a href="#" class="btn" onClick={handleClick}>
-                Thêm Phim
+                Thêm User
               </a>
             </div>
             <div class={scss.user}>
@@ -87,35 +76,37 @@ const MovieList = () => {
           </div>
         </div>
         <div className={scss.content}>
-          <h2>Danh sách phim</h2>
+          <h2>Danh sách User</h2>
           <table className={scss.table}>
             <thead>
               <tr>
-                <th>Mã phim</th>
-                <th>Tên phim</th>
-                <th>Hình ảnh</th>
-                <th>Mô tả</th>
+                <th>Tài khoản</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Sđt</th>
+                <th>Mật khẩu</th>
                 <th>Hành động</th>
               </tr>
             </thead>
             <tbody>
-              {movies?.map((movie) => {
+              {users?.map((user) => {
                 return (
-                  <tr key={movie.maPhim}>
-                    <td>{movie.maPhim}</td>
-                    <td>{movie.tenPhim}</td>
+                  <tr key={user.taiKhoan}>
+                    <td>{user.taiKhoan}</td>
+                    <td>{user.hoTen}</td>
+                    <td>{user.email}</td>
+                    <td>{user.soDT}</td>
+                    <td>{user.matKhau}</td>
                     <td>
-                      <img src={movie.hinhAnh} width="70px" height="70px" />
-                    </td>
-                    <td>{movie.moTa}</td>
-                    <td>
-                      <button onClick={() => onSelectProduct(movie.maPhim)}>
+                      <button
+                      //   onClick={() => onSelectProduct(movie.maPhim)}
+                      >
                         Update
                       </button>
                       <button
-                        onClick={() =>
-                          handleDelete(movie.maPhim, user.accessToken)
-                        }
+                      // onClick={() =>
+                      //   handleDelete(movie.maPhim, user.accessToken)
+                      // }
                       >
                         Delete
                       </button>
@@ -131,4 +122,4 @@ const MovieList = () => {
   );
 };
 
-export default MovieList;
+export default UserList;

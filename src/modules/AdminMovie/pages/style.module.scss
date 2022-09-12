@@ -46,7 +46,6 @@
   position: absolute;
   right: 0;
   width: 85vw;
-  height: 100vh;
   background: #f1f1f1;
   .header {
     position: fixed;
@@ -110,6 +109,11 @@
       }
       .user {
         flex: 1 1;
+        p{
+          img{
+            width: 40px;
+          }
+        }
         a {
           text-decoration: none;
         }

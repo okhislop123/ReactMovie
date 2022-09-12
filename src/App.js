@@ -22,6 +22,8 @@ const MovieList = lazy(() => import("modules/AdminMovie/pages/MovieList"));
 const AddMovie = lazy(() => import("modules/AdminMovie/pages/AddMovie"));
 const UpdateMovie = lazy(() => import("modules/AdminMovie/pages/UpdateMovie"));
 const Times = lazy(() => import("modules/AdminMovie/pages/Times"));
+const UpdateUser = lazy(() => import("modules/AdminMovie/pages/UpdateUser"));
+const UserList = lazy(() => import("modules/AdminMovie/pages/UserList"));
 
 function App() {
   return (
@@ -42,9 +44,11 @@ function App() {
         <Route path="/" element={<AdminRoute />}>
           <Route path="admin/">
             <Route index path="movies" element={<MovieList />} />
-            <Route path="movies/add" element={<AddMovie />} />
-            <Route path="movies/update" element={<UpdateMovie />} />
+            <Route path="movies/addmovie" element={<AddMovie />} />
+            <Route path="movies/updatemovie/:movieId" element={<UpdateMovie />} />
             <Route path="movies/time" element={<Times />} />
+            <Route path="movies/updateuser" element={<UpdateUser />} />
+            <Route path="movies/user" element={<UserList />} />
           </Route>
           {/* AdminUser, AdminShowtimes */}
         </Route>

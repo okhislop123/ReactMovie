@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import scss from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
-import  "dayjs";
+// import  "dayjs";
 
 // Data thêm phim: tenPhim, biDanh, moTa, trailer, hinhAnh, ngayKhoiChieu, maNhom
 
@@ -138,7 +138,7 @@ const AddMovie = () => {
             style={{ width: "200px", heigh: "250px" }}
           />
         )}
-        {/* <div className={scss.field}>
+        <div className={scss.field}>
           <input
             type="text"
             {...register("ngayKhoiChieu", {
@@ -156,8 +156,8 @@ const AddMovie = () => {
           <span></span>
           <label>Ngày Khởi Chiếu</label>
           {errors.ngayKhoiChieu && <p>{errors.ngayKhoiChieu.message}</p>}
-        </div> */}
-        <div className={scss.field}>
+        </div>
+        {/* <div className={scss.field}>
           <input
             type="text"
             {...register("ngayKhoiChieu", {
@@ -171,7 +171,7 @@ const AddMovie = () => {
           <span></span>
           <label>Ngày Khởi Chiếu</label>
           {errors.ngayKhoiChieu && <p>{errors.ngayKhoiChieu.message}</p>}
-        </div>
+        </div> */}
         <button>Thêm Phim</button>
       </form>
     </div>
