@@ -20,9 +20,16 @@ const Times = () => {
         mode: "onTouched",
       });
 
-      const onSubmit = async (values) => {
-        try {
-        //   await handleAddMovie(values);
+      const user = JSON.parse(localStorage.getItem("user"));
+      
+      const { data: handleAddTime, isLoading } = useRequest(
+        (values,user) => movieAPI.ShowTime(values,user.accessToken),
+        { isManual: true }
+        );
+        
+        const onSubmit = async (values) => {
+          try {
+          await handleAddTime(values, user);
           console.log(values);
           // Thành công: gọi notification
           // Redirect về trang MovieList
@@ -31,6 +38,7 @@ const Times = () => {
           // Thất bại: gọi notification hiển thị error
         }
       };
+       
   return (
     <div className={scss.center}>
       <h1 className={scss.h1}>Thêm Lịch Chiếu</h1>
@@ -74,7 +82,7 @@ const Times = () => {
             })}
           />
           <span></span>
-          <label>Mã rạp</label>
+          <label>Mã cụm rạp</label>
           {errors.maRap && <p>{errors.maRap.message}</p>}
         </div>
         <div className={scss.field}>
@@ -91,7 +99,7 @@ const Times = () => {
           <label>Giá vé</label>
           {errors.giaVe && <p>{errors.giaVe.message}</p>}
         </div>
-        <button>Thêm Lịch Chiếu</button>
+        <button >Thêm Lịch Chiếu</button>
       </form>
     </div>
   )

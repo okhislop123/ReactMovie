@@ -47,7 +47,7 @@ function App() {
             <Route path="movies/addmovie" element={<AddMovie />} />
             <Route path="movies/updatemovie/:movieId" element={<UpdateMovie />} />
             <Route path="movies/time" element={<Times />} />
-            <Route path="movies/updateuser" element={<UpdateUser />} />
+            <Route path="movies/updateuser/:userId" element={<UpdateUser />} />
             <Route path="movies/user" element={<UserList />} />
           </Route>
           {/* AdminUser, AdminShowtimes */}

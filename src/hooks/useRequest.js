@@ -27,7 +27,7 @@ const useRequest = (fn, config = {}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const request = async (...params) => {
-    try {
+    try { 
       dispatch({ type: "REQUEST_PENDING" });
       const data = await fn(...params);
       return data;

@@ -8,6 +8,12 @@ const userAPI = {
       },
     });
   },
+  UpdateUser: (userId, acces) =>{
+    return axiosClient.post("QuanLyNguoiDung/LayThongTinNguoiDung",userId,{
+    headers: {
+      Authorization: `Bearer ${acces}`,
+    }})
+  }
 };
 
 export default userAPI;

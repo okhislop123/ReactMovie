@@ -55,6 +55,14 @@ const movieAPI = {
     formData.append("maPhim", movieId);
     return axiosClient.post("QuanLyPhim/CapNhatPhimUpload", formData);
   },
+  ShowTime: (values, acces) =>{
+    return axiosClient.post("QuanLyDatVe/TaoLichChieu",{
+      ...values,
+      headers:{
+        Authorization: `Bearer ${acces}`,
+      },
+    })
+  }
 };
 
 export default movieAPI;

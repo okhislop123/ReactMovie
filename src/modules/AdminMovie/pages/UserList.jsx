@@ -8,6 +8,7 @@ const UserList = () => {
   const { data: users } = useRequest(() => userAPI.getUser());
   console.log(users);
 
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -32,6 +33,11 @@ const UserList = () => {
   const handleClickc = () => {
     navigate("/admin/movies");
   };
+
+  const onSelectProduct = (userId) =>{
+    userAPI.UpdateUser(userId)
+    navigate(`/admin/movies/updateuser/${userId}`)
+  }
   return (
     <div className={scss.center}>
       <div className={scss.menu}>
@@ -99,7 +105,7 @@ const UserList = () => {
                     <td>{user.matKhau}</td>
                     <td>
                       <button
-                      //   onClick={() => onSelectProduct(movie.maPhim)}
+                        onClick={() => onSelectProduct(user.taiKhoan)}
                       >
                         Update
                       </button>

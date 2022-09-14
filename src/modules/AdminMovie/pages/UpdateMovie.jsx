@@ -19,7 +19,7 @@ const UpdateMovie = () => {
     setValue,
   } = useForm({
     defaultValues: {
-      maPhim:movieId,
+      maPhim: movieId,
       tenPhim: "",
       biDanh: "",
       moTa: "",
