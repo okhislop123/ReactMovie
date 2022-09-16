@@ -20,9 +20,20 @@ const movieAPI = {
       },
     });
   },
-  // getMovieCinema:() =>{
-  //   return axiosClient.get("")
-  // }
+  getThongTinPhim:(movieId) =>{
+    return axiosClient.get("QuanLyRap/LayThongTinLichChieuPhim",{
+      params: {
+        maPhim : movieId
+      }
+    })
+  },
+  getLayGhe:(ticketId) =>{
+    return axiosClient.get("QuanLyDatVe/LayDanhSachPhongVe",{
+      params: {
+        MaLichChieu : ticketId
+      }
+    })
+  },
   addMovie: (movie) => {
     // Đối với dữ liệu có định dạng đặc biệt như File,...
     // Ta cần phải tạo ra FormData để lưu trữ

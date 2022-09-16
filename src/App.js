@@ -5,6 +5,7 @@ import MainLayout from "components/MainLayout";
 import AuthLayout from "components/AuthLayout";
 import CheckoutRoute from "routes/CheckoutRoute";
 import AdminRoute from "routes/AdminRoute";
+// import Ticket from "modules/Ticket";
 
 // Không import trực tiếp các pages, vì nó sẽ được tải tất cả ở lần đầu tiên
 // import Home from "modules/Home/pages/Home";
@@ -17,6 +18,7 @@ const Home = lazy(() => import("modules/Home/pages/Home"));
 const Movie = lazy(() => import("modules/Movie/pages/Movie"));
 const Login = lazy(() => import("modules/Authentication/pages/Login"));
 const Register = lazy(() => import("modules/Authentication/pages/Register"));
+const Ticket = lazy(() => import("modules/Ticket/Pages/Ticket"));
 
 const MovieList = lazy(() => import("modules/AdminMovie/pages/MovieList"));
 const AddMovie = lazy(() => import("modules/AdminMovie/pages/AddMovie"));
@@ -45,7 +47,10 @@ function App() {
           <Route path="admin/">
             <Route index path="movies" element={<MovieList />} />
             <Route path="movies/addmovie" element={<AddMovie />} />
-            <Route path="movies/updatemovie/:movieId" element={<UpdateMovie />} />
+            <Route
+              path="movies/updatemovie/:movieId"
+              element={<UpdateMovie />}
+            />
             <Route path="movies/time" element={<Times />} />
             <Route path="movies/updateuser/:userId" element={<UpdateUser />} />
             <Route path="movies/user" element={<UserList />} />
@@ -63,10 +68,11 @@ function App() {
             element={
               <CheckoutRoute>
                 {/* <Checkout /> */}
-                <h1>Checkout Component</h1>
+                <h1>Component...</h1>
               </CheckoutRoute>
             }
           />
+          <Route path="ticket/:ticketId" element={<Ticket />} />
         </Route>
 
         <Route path="/" element={<AuthLayout />}>

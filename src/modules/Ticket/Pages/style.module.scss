@@ -1,0 +1,21 @@
+.container {
+    background-color: #ccffff;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    h1{
+      text-align: center;
+    }
+    .row{
+      display: flex;
+    }
+}
+
+.chairing {
+  background-color: #33ff00;
+}
+.chaired {
+  background-color: #ffcc33;
+  opacity: 0.5;
+}
+  

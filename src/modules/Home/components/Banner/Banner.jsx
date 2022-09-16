@@ -28,7 +28,6 @@ const Banner = () => {
     return { ...banner, trailer: TRAILERS[index] };
   });
 
-  console.log(bannersMapped);
 
   return (
     <div style={{ display: "flex" }}>
