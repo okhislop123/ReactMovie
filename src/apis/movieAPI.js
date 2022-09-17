@@ -34,7 +34,7 @@ const movieAPI = {
       }
     })
   },
-  DatVe: (data,acces) =>{
+  datVe: (data,acces) =>{
     return axiosClient.post("QuanLyDatVe/DatVe",{
       ...data,
       headers:{

@@ -1,54 +1,70 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import movieAPI from "apis/movieAPI";
 
 const initialState = {
   DanhSachGheDangDat: [],
 };
 
+export const selectChair = createAction("selectChair");
+// export const handleBooked = createAction("handleBooked");
 
 const selectChairs = (state, action) => {
-  switch (action.type) {
-    case "chair/selectChair":
-      console.log("test");
-      const danhSachGheCapNhat = [...state.DanhSachGheDangDat];
-      const index = danhSachGheCapNhat.findIndex((item) => {
-        return item.maGhe === action.payload.maGhe;
-      });
-      if (index !== -1) {
-        danhSachGheCapNhat.splice(index, 1);
-      } else {
-        danhSachGheCapNhat.push(action.payload);
-      }
-      return { ...state, DanhSachGheDangDat: danhSachGheCapNhat };
-    case "chair/handleBook":
-      console.log("first");
-      return { ...state };
-    default:
-      return state;
+  const danhSachGheCapNhat = [...state.DanhSachGheDangDat];
+  const index = danhSachGheCapNhat.findIndex((item) => {
+    return item.maGhe === action.payload.maGhe;
+  });
+  if (index !== -1) {
+    danhSachGheCapNhat.splice(index, 1);
+  } else {
+    danhSachGheCapNhat.push(action.payload);
   }
+  return { ...state, DanhSachGheDangDat: danhSachGheCapNhat };
 };
 
-const handleBookedTicket = (state, action) => {
-  switch (action.type) {
-    case "chair/handleBook":
-        console.log("first")
-      return { ...state };
-    default:
-      console.log("bok");
-      return state;
+export const handleBookTicket = createAsyncThunk(
+  "chair/booked",
+  async ({ data, access }, { rejectWithValue }) => {
+    try {
+      const res = await movieAPI.datVe(data, access);
+      return res;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
-};
+);
+
+// const handleBookedTicket = (state, action) => {};
 
 const GioHang = createSlice({
   name: "chair",
   initialState,
-  reducers: {
-    selectChair: selectChairs,
-    handleBook: (state,action) => {
-        console.log("first")
-    } ,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(selectChair, (state, action) => {
+        return selectChairs(state, action);
+      })
+      .addCase(handleBookTicket.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(handleBookTicket.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.DanhSachGheDangDat = [];
+        state.isLoading = false;
+      })
+      .addCase(handleBookTicket.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+      })
+      // .addCase(handleBooked, (state, action) => {
+      //   return handleBookedTicket(state, action);
+      // })
+      .addDefaultCase((state, action) => {
+        return state;
+      });
   },
 });
 
-export const { selectChair, handleBook } = GioHang.actions;
+// export const { selectChair } = GioHang.actions;
 
 export default GioHang.reducer;

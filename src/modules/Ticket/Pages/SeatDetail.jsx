@@ -1,29 +1,34 @@
 import React from "react";
 import scss from "./style.module.scss";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import store from "store";
-import { handleBook } from "../slices/GioHang";
-
+import { handleBookTicket } from "../slices/GioHang";
+import { message } from "antd";
+import { getLayGhe } from "../slices/LayDanhSachGhe";
 
 const SeatDetail = ({ ThongTinPhim }) => {
   const { DanhSachGheDangDat } = useSelector((state) => state.giohang);
-  // console.log(DanhSachGheDangDat);
-  const dispatch = useDispatch();
-  const { ticketId} = useParams()
+  const { ticketId } = useParams();
   const user = JSON.parse(localStorage.getItem("user"));
-
   const base = {
-    "maLichChieu": ticketId,
-    "danhSachVe": DanhSachGheDangDat
-  }
-
-  const handleClear = (base, access) => {
-    store.dispatch(() => handleBook("ab"))
-    console.log(base)
-    // dispatch({type :"handleBooked",base, access})
+    maLichChieu: ticketId,
+    danhSachVe: DanhSachGheDangDat,
   };
-  
+
+  const handleClear = async (base, access) => {
+    const data = await store.dispatch(
+      handleBookTicket({
+        data: base,
+        access: access,
+      })
+    );
+    if (data.meta.requestStatus === "fulfilled") {
+      message.success(data.payload);
+      store.dispatch(getLayGhe(ticketId));
+    }
+  };
+
   return (
     <div className={scss.col2}>
       <h2>Danh sách ghế đã chọn</h2>
@@ -78,7 +83,7 @@ const SeatDetail = ({ ThongTinPhim }) => {
       <br />
       <button
         className={scss.buttons}
-        onClick={() => handleClear(base , user.accessToken)}
+        onClick={() => handleClear(base, user.accessToken)}
       >
         ĐẶT VÉ
       </button>

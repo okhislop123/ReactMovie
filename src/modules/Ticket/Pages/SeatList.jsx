@@ -8,7 +8,7 @@ import { selectChair } from "../slices/GioHang";
 const SeatList = ({ DanhSachGhe }) => {
   const { DanhSachGheDangDat } = useSelector((state) => state.giohang);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const handleChair = (ghe) => {
   //   dispatch({ type: "selectChair", gheDuocChon : ghe });
