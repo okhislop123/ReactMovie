@@ -16,7 +16,7 @@ const Ticket = () => {
   const { ThongTinPhim, isLoading, error } = useSelector(
     (state) => state.danhsachghe
   );
-  console.log(ThongTinPhim);
+  const { danhSachGhe, thongTinPhim} = ThongTinPhim
 
   useEffect(() => {
     dispatch(getLayGhe(ticketId));
@@ -24,10 +24,10 @@ const Ticket = () => {
 
   return (
     <div className={scss.container}>
-      <h1 className={scss.h1}>ĐẶT VÉ XEM PHIM</h1>
+      <h1 className="text-center text-primary">ĐẶT VÉ XEM PHIM</h1>
       <div className={scss.row}>
-        <SeatList DanhSachGhe={ThongTinPhim.danhSachGhe} />
-        <SeatDetail ThongTinPhim={ThongTinPhim.thongTinPhim} />
+        <SeatList DanhSachGhe={danhSachGhe}/>
+        <SeatDetail ThongTinPhim={thongTinPhim} />
       </div>
     </div>
   );

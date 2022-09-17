@@ -1,21 +1,87 @@
 .container {
-    background-color: #ccffff;
-    height: 100%;
-    position: relative;
-    text-align: center;
-    h1{
-      text-align: center;
-    }
-    .row{
-      display: flex;
-    }
+  background-color: #ccffff;
+  height: 100vh;
+  position: relative;
 }
-
-.chairing {
+.square {
+  width: 40px;
+  height: 40px;
+  background: #ffcc33;
+  margin-right: 15px;
+}
+.colorone {
+  width: 40px;
+  height: 40px;
+  background: #33ff00;
+  margin-right: 15px;
+}
+.colortwo {
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  margin-right: 15px;
+}
+.colorthree {
+  width: 40px;
+  height: 40px;
+  background: red;
+  margin-right: 15px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.ghe {
+  color: black;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+  background-color: #ffffff;
+}
+.gheDangDat {
   background-color: #33ff00;
 }
-.chaired {
+.gheDaDat {
   background-color: #ffcc33;
   opacity: 0.5;
 }
-  
+.gheVip {
+  background-color: #FF00FF;
+}
+.col2 {
+  position: absolute;
+  right: 200px;
+  text-align: center;
+}
+.col1 {
+  position: absolute;
+  left: 100px;
+  text-align: center;
+}
+.tab{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  h5{
+    margin-right: 15px;
+  }
+  .colora{
+    color: #FF00FF;
+  }
+  span{
+    color: #FF00FF;
+    font-size: 15px;
+  }
+}
+.buttons{
+  padding: 10px 50px;
+  border-radius: 8px;
+  color: black;
+  border: 1px solid transparent;
+  font-size: 20px;
+  font-weight: 600;
+}

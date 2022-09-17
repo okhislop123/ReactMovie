@@ -7,6 +7,8 @@ const initialState = {
   error: "",
 };
 
+// const 
+
 export const getLayGhe = createAsyncThunk(
   "ticket/info/getLayGhe",
   async (ticketId, { rejectWithValue }) => {

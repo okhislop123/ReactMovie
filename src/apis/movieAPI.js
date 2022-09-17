@@ -34,6 +34,14 @@ const movieAPI = {
       }
     })
   },
+  DatVe: (data,acces) =>{
+    return axiosClient.post("QuanLyDatVe/DatVe",{
+      ...data,
+      headers:{
+        Authorization: `Bearer ${acces}`,
+      }
+    })
+  },
   addMovie: (movie) => {
     // Đối với dữ liệu có định dạng đặc biệt như File,...
     // Ta cần phải tạo ra FormData để lưu trữ
